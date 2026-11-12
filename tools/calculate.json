@@ -1,0 +1,20 @@
+{
+  "type": "function",
+  "function": {
+    "name": "calculate",
+    "description": "计算数学表达式，支持十进制数字、科学计数法、括号、正负号和 + - * / **。幂用 **，指数须为 -1000 到 1000 的整数。最多 28 位有效数字，超出精度时按十进制四舍六入五成双舍入；表达式最多 500 字符。不支持变量或函数调用。结果以十进制字符串返回，出错时根据错误修正表达式后再调用。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "expression": {
+          "type": "string",
+          "description": "要计算的表达式，例如 (12.5 + 7.5) * 3 / 2、0.1 + 0.2 或 2 ** 10。",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "required": ["expression"],
+      "additionalProperties": false
+    }
+  }
+}

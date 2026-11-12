@@ -1,0 +1,30 @@
+# Local API keys and environment configuration
+.env
+.env.*
+!.env.example
+
+# macOS metadata
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+node_modules/
+test-results/
+playwright-report/
+.runtime/
+frontend/dist/
+
+# Local diagnostic logs and SQLite sidecar files
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Only the pristine database template is versioned
+!examples/agent_logs.empty.sqlite3
+
+# Tests stay local and are not part of the published repository
+tests/
+playwright.config.*

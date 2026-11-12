@@ -1,0 +1,35 @@
+{
+  "type": "function",
+  "function": {
+    "name": "todolist",
+    "description": "管理当前会话的待办，数据保存在 SQLite。action：0=新增(add)，1=列表(list)，2=按 id 查询单条，3=修改(update)，4=删除(delete)。session_id 由后端自动提供，不要填写。新增必须提供 content，不能提供 id，stauts 未填默认为待办；列表只填 action；查询单条和删除只填 action、id；修改必须提供 id 及 content、stauts 中至少一个。id 由数据库自增生成，使用工具结果中的真实 id。stauts 字段名保留此拼写，值只能为待办、进行中、已完成。新增、查询和修改返回记录，列表返回记录数组，删除返回 id 和 deleted。需要最新待办状态时调用本工具，不依赖旧的聊天记录。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "integer",
+          "enum": [0, 1, 2, 3, 4],
+          "description": "操作编号：0 新增，1 列表，2 按 id 查询单条，3 修改，4 删除。"
+        },
+        "id": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9223372036854775807,
+          "description": "数据库生成的待办 id。查询、修改、删除必填；新增和列表不要填写。"
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1,
+          "description": "由模型填写的待办内容；新增必填，修改时可提供新内容。"
+        },
+        "stauts": {
+          "type": "string",
+          "enum": ["待办", "进行中", "已完成"],
+          "description": "待办状态，字段名为 stauts。新增未填默认为待办；修改时可提供新状态。"
+        }
+      },
+      "required": ["action"],
+      "additionalProperties": false
+    }
+  }
+}
